@@ -500,6 +500,8 @@ class CuteInterpreter(object):
 
         elif func_node.type is TokenType.NOT:
             expr_rhs1 = self.run_expr(rhs1)
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+
             if expr_rhs1.type is 9:
                 return self.TRUE_NODE
             else:
