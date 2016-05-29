@@ -549,7 +549,7 @@ class CuteInterpreter(object):
                 [TokenType.CAR, TokenType.CDR, TokenType.CONS, TokenType.ATOM_Q,\
                  TokenType.EQ_Q, TokenType.NULL_Q, TokenType.NOT, TokenType.MINUS,\
                  TokenType.PLUS, TokenType.TIMES, TokenType.DIV, TokenType.GT, TokenType.LT, TokenType.EQ,\
-                 TokenType.NOT, TokenType.COND]:
+                 TokenType.NOT, TokenType.COND, TokenType.DEFINE]:
             return self.run_func(op_code)
         if op_code.type is TokenType.QUOTE:
             return l_node
