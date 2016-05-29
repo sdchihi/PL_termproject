@@ -412,14 +412,17 @@ class CuteInterpreter(object):
                         return self.TRUE_NODE
             return self.FALSE_NODE
 
+
         elif func_node.type is TokenType.EQ_Q:
-            #작성
+            # 작성
+            rhs1 = self.lookup_table(rhs1)
+            rhs2 = self.lookup_table(rhs2)
             if rhs1.type is TokenType.INT and rhs2.type is TokenType.INT:
                 if rhs1.value == rhs2.value:
                     return self.TRUE_NODE
                 else:
-                    return self.FALSE_NODE
-            else :
+                   return self.FALSE_NODE
+            else:
                 return self.FALSE_NODE
 
         elif func_node.type is TokenType.NULL_Q:
