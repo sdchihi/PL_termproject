@@ -430,6 +430,9 @@ class CuteInterpreter(object):
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
 
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
             result = Node(TokenType.INT)
             result.value = int(expr_rhs1.value) + int(expr_rhs2.value)
             return result
@@ -437,6 +440,9 @@ class CuteInterpreter(object):
         elif func_node.type is TokenType.TIMES:
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
+
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
 
             result = Node(TokenType.INT)
             result.value = int(expr_rhs1.value) * int(expr_rhs2.value)
@@ -446,6 +452,10 @@ class CuteInterpreter(object):
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
 
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
+
             result = Node(TokenType.INT)
             result.value = int(expr_rhs1.value) / int(expr_rhs2.value)
             return result
@@ -453,6 +463,10 @@ class CuteInterpreter(object):
         elif func_node.type is TokenType.GT:
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
+
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
 
             if int(expr_rhs1.value) > int(expr_rhs2.value):
                 return self.TRUE_NODE
@@ -463,6 +477,10 @@ class CuteInterpreter(object):
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
 
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
+
             if int(expr_rhs1.value) < int(expr_rhs2.value):
                 return self.TRUE_NODE
             else:
@@ -472,6 +490,9 @@ class CuteInterpreter(object):
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
 
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
             if int(expr_rhs1.value) == int(expr_rhs2.value):
                 return self.TRUE_NODE
             else:
@@ -479,6 +500,8 @@ class CuteInterpreter(object):
 
         elif func_node.type is TokenType.NOT:
             expr_rhs1 = self.run_expr(rhs1)
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+
             if expr_rhs1.type is 9:
                 return self.TRUE_NODE
             else:
