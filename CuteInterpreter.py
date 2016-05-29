@@ -317,6 +317,7 @@ class CuteInterpreter(object):
 
     TRUE_NODE = Node(TokenType.TRUE)
     FALSE_NODE = Node(TokenType.FALSE)
+    VAR_DICT = {}
 
     def run_arith(self, arith_node):
         pass
@@ -483,7 +484,7 @@ class CuteInterpreter(object):
             else:
                 return self.FALSE_NODE
 
-        elif func_node.type is TokenType.COND:
+        if func_node.type is TokenType.COND:
             return self.run_cond(rhs1)
 
         elif func_node.type is TokenType.DEFINE:
@@ -491,7 +492,7 @@ class CuteInterpreter(object):
             expr_rhs2 = self.run_expr(rhs2)
             self.VAR_DICT[expr_rhs1.value] = expr_rhs2
             return None
-        
+
         else:
             return None
 
