@@ -490,6 +490,9 @@ class CuteInterpreter(object):
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
 
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
             if int(expr_rhs1.value) == int(expr_rhs2.value):
                 return self.TRUE_NODE
             else:
