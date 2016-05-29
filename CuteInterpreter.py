@@ -364,6 +364,7 @@ class CuteInterpreter(object):
 
         if func_node.type is TokenType.CAR:
             rhs1 = self.run_expr(rhs1)
+            rhs1 = self.lookup_table(rhs1)
             if not is_quote_list(rhs1):
                 print ("car error!")
             result = pop_node_from_quote_list(rhs1)
