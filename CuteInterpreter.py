@@ -425,7 +425,9 @@ class CuteInterpreter(object):
             else:
                 return self.FALSE_NODE
 
+
         elif func_node.type is TokenType.NULL_Q:
+            rhs1 = self.lookup_table(rhs1)
             if list_is_null(rhs1): return self.TRUE_NODE
             return self.FALSE_NODE
 
