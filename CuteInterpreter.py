@@ -430,6 +430,9 @@ class CuteInterpreter(object):
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
 
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+
             result = Node(TokenType.INT)
             result.value = int(expr_rhs1.value) + int(expr_rhs2.value)
             return result
