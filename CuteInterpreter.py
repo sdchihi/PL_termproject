@@ -488,6 +488,12 @@ class CuteInterpreter(object):
         else:
             return None
 
+    def lookup_table(self, dic_id):
+        if dic_id.value in self.VAR_DICT:
+            return self.VAR_DICT[dic_id.value]
+        else:
+            return dic_id
+
     def run_cond(self, root_node):
         if root_node.type is TokenType.LIST:
             expr_rhs1 = self.run_expr(root_node.value)
