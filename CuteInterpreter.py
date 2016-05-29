@@ -401,7 +401,9 @@ class CuteInterpreter(object):
             expr_rhs1.next = expr_rhs2
             return create_quote_node(expr_rhs1, True)
 
+
         elif func_node.type is TokenType.ATOM_Q:
+            rhs1 = self.lookup_table(rhs1)
             if list_is_null(rhs1): return self.TRUE_NODE
             if rhs1.type is not TokenType.LIST: return self.TRUE_NODE
             if rhs1.type is TokenType.LIST:
