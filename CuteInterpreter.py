@@ -372,16 +372,18 @@ class CuteInterpreter(object):
                 return result
             return create_quote_node(result)
 
+
         elif func_node.type is TokenType.CDR:
-            #작성
+            # 작성
             rhs1 = self.run_expr(rhs1)
+            rhs1 = self.lookup_table(rhs1)
             if not is_quote_list(rhs1):
                 print ("cdr error!")
             result = pop_node_from_quote_list(rhs1)
             if result is not None:
                 result = result.next
             if result.type is not TokenType.LIST:
-                return create_quote_node(result,True)
+                return create_quote_node(result, True)
             return result
 
         elif func_node.type is TokenType.CONS:
