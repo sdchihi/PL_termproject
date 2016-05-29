@@ -386,17 +386,20 @@ class CuteInterpreter(object):
                 return create_quote_node(result, True)
             return result
 
+
         elif func_node.type is TokenType.CONS:
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
-            #작성
-            #rhs2는 무조건 list라고 가정
-            if expr_rhs1.type is TokenType.INT :
+            expr_rhs1 = self.lookup_table(expr_rhs1)
+            expr_rhs2 = self.lookup_table(expr_rhs2)
+            # 작성
+            # rhs2는 무조건 list라고 가정
+            if expr_rhs1.type is TokenType.INT:
                 expr_rhs1 = create_quote_node(expr_rhs1)
             expr_rhs1 = expr_rhs1.value.next
             expr_rhs2 = pop_node_from_quote_list(expr_rhs2)
             expr_rhs1.next = expr_rhs2
-            return create_quote_node(expr_rhs1,True)
+            return create_quote_node(expr_rhs1, True)
 
         elif func_node.type is TokenType.ATOM_Q:
             if list_is_null(rhs1): return self.TRUE_NODE
