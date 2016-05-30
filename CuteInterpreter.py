@@ -530,7 +530,7 @@ class CuteInterpreter(object):
         elif func_node.type is TokenType.DEFINE:
             expr_rhs1 = self.run_expr(rhs1)
             expr_rhs2 = self.run_expr(rhs2)
-            self.VAR_DICT[expr_rhs1.value] = expr_rhs2
+            self.VAR_DICT[expr_rhs1.value] = self.run_expr(expr_rhs2)
             return None
 
         else:
@@ -548,6 +548,8 @@ class CuteInterpreter(object):
         else:
             expr_rhs1 = root_node.value
 
+        expr_rhs1 = self.lookup_table(expr_rhs1)
+
         if expr_rhs1.type not in [TokenType.TRUE, TokenType.FALSE]:
             print("Type error")
             return None
@@ -555,7 +557,7 @@ class CuteInterpreter(object):
         if expr_rhs1.type is 9:
             return self.run_cond(root_node.next)
 
-        return self.run_expr(root_node.value.next)
+        return self.run_expr(self.lookup_table(root_node.value.next))
 
     def run_expr(self, root_node):
         """
