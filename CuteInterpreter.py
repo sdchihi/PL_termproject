@@ -556,8 +556,6 @@ class CuteInterpreter(object):
 
         if expr_rhs1.type is 9:
             return self.run_cond(root_node.next)
-        else:
-            return None
 
         return self.run_expr(self.lookup_table(root_node.value.next))
 
