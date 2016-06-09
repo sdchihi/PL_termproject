@@ -318,6 +318,7 @@ class CuteInterpreter(object):
     TRUE_NODE = Node(TokenType.TRUE)
     FALSE_NODE = Node(TokenType.FALSE)
     VAR_DICT = {}
+    LOCAL_PARAM = {}
 
     def run_arith(self, arith_node):
         pass
@@ -528,10 +529,14 @@ class CuteInterpreter(object):
             return self.run_cond(rhs1)
 
         elif func_node.type is TokenType.DEFINE:
-            expr_rhs1 = self.run_expr(rhs1)
-            expr_rhs2 = self.run_expr(rhs2)
-            self.VAR_DICT[expr_rhs1.value] = self.run_expr(expr_rhs2)
+            self.VAR_DICT[rhs1.value] = rhs2
             return None
+
+        elif func_node.type is TokenType.LAMBDA:
+            parameter = rhs1.value
+            expr = rhs2
+            self.LOCAL_PARAM[parameter.value] = rhs2.next
+            return self.run_expr(expr)
 
         else:
             return None
